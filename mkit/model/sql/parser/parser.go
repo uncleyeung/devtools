@@ -49,7 +49,7 @@ type (
 )
 
 // Parse parses ddl into golang structure
-func Parse(filename string, database string) ([]*Table, error) {
+func Parse(filename string, database string, gitlab string, repo string) ([]*Table, error) {
 	p := parser.NewParser()
 	tables, err := p.From(filename)
 	if err != nil {
@@ -152,6 +152,8 @@ func Parse(filename string, database string) ([]*Table, error) {
 			PrimaryKey:  primaryKey,
 			UniqueIndex: uniqueIndex,
 			Fields:      fields,
+			Gitlab:      gitlab,
+			Repo:        repo,
 		})
 	}
 

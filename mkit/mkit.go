@@ -30,7 +30,7 @@ var (
 					Name:  "mysql",
 					Usage: `generate mysql model`,
 					Subcommands: []cli.Command{
-						/*{
+						{
 							Name:  "ddl",
 							Usage: `generate mysql model from ddl`,
 							Flags: []cli.Flag{
@@ -46,9 +46,13 @@ var (
 									Name:  "style",
 									Usage: "the file naming format, see [https://github.com/tal-tech/go-zero/tree/master/tools/goctl/config/readme.md]",
 								},
-								cli.BoolFlag{
-									Name:  "cache, c",
-									Usage: "generate code with cache [optional]",
+								cli.StringFlag{
+									Name:  "gitlab, g",
+									Usage: "the [your.gitlab.com] url",
+								},
+								cli.StringFlag{
+									Name:  "repo, r",
+									Usage: "the [your-repository] name",
 								},
 								cli.BoolFlag{
 									Name:  "idea",
@@ -60,7 +64,7 @@ var (
 								},
 							},
 							Action: model.MysqlDDL,
-						},*/
+						},
 						{
 							Name:  "datasource",
 							Usage: `generate model from datasource`,

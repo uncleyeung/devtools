@@ -40,13 +40,15 @@ func MysqlDDL(ctx *cli.Context) error {
 	cache := ctx.Bool(flagCache)
 	idea := ctx.Bool(flagIdea)
 	style := ctx.String(flagStyle)
+	gitlab := ctx.String(flagGitlab)
+	repo := ctx.String(flagRepo)
 	database := ctx.String(flagDatabase)
 	cfg, err := config.NewConfig(style)
 	if err != nil {
 		return err
 	}
 
-	return fromDDl(src, dir, cfg, cache, idea, database)
+	return fromDDl(src, dir, cfg, cache, idea, database, gitlab, repo)
 }
 
 // MySqlDataSource generates model code from datasource
@@ -89,7 +91,7 @@ func PostgreSqlDataSource(ctx *cli.Context) error {
 	return fromPostgreSqlDataSource(url, pattern, dir, schema, cfg, cache, idea)
 }
 
-func fromDDl(src, dir string, cfg *config.Config, cache, idea bool, database string) error {
+func fromDDl(src, dir string, cfg *config.Config, cache, idea bool, database, gitlab, repo string) error {
 	log := console.NewConsole(idea)
 	src = strings.TrimSpace(src)
 	if len(src) == 0 {
@@ -111,7 +113,7 @@ func fromDDl(src, dir string, cfg *config.Config, cache, idea bool, database str
 	}
 
 	for _, file := range files {
-		err = generator.StartFromDDL(file, cache, database)
+		err = generator.StartFromDDL(file, cache, database, gitlab, repo)
 		if err != nil {
 			return err
 		}
