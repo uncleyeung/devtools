@@ -52,11 +52,11 @@ type (
 
 	UserXxxxxLog struct {
 		Id           int64         `gorm:"column:id" db:"id"`                         // 主键id
-		RelationId   int64         `gorm:"column:relation_id" db:"relation_id"`       // 师徒关系id
+		RelationId   int64         `gorm:"column:relation_id" db:"relation_id"`       // 关系id
 		PlayerId     int64         `gorm:"column:player_id" db:"player_id"`           // player_id
 		PlayerName   string        `gorm:"column:player_name" db:"player_name"`       // 昵称
 		TaskType     int8          `gorm:"column:task_type" db:"task_type"`           // 完成任务类型:1初级任务2进阶任务3高级任务4特殊任务
-		AwardType    int8          `gorm:"column:award_type" db:"award_type"`         // 奖励类型:1金币2礼物3特效
+		AwardType    int8          `gorm:"column:award_type" db:"award_type"`         // 奖励类型:1金币2礼物
 		GiftId       sql.NullInt64 `gorm:"column:gift_id" db:"gift_id"`               // 礼物/特效id
 		AwardNum     int32         `gorm:"column:award_num" db:"award_num"`           // 奖励数量
 		CreateTime   time.Time     `gorm:"column:create_time" db:"create_time"`       // 创建时间
